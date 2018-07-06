@@ -9,13 +9,13 @@ class Edit extends Component {
 
     this.state = {
       listItem: {
-        id: 0,
-        title: '',
-        description: '',
-        author: 'Admin',
-        createDate: new Date(),
-        deadLine: '',
-        status: 'active'
+        id: this.props.current.id,
+        title: this.props.current.title,
+        description: this.props.current.description,
+        author: this.props.current.author,
+        createDate: this.props.current.createDate,
+        deadLine: this.props.current.deadLine,
+        status: this.props.current.status
       }
     }
   }
@@ -32,20 +32,29 @@ class Edit extends Component {
 
   render() {
     return (
-      <section className="content">
-        Edit
-        <label>Title: </label> <input type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
-        <label>Description: </label><input type="text" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}/>
-        <label>Deadline: </label><input type="text" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
-        <button onClick={ () => this.save() }>Save</button>
-      </section>
+      <span>
+        <h2 className="content__title">Edit task</h2>
+        <div className="form-group">
+          <label className="form-group__label">Title: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
+        </div>
+        <div className="form-group">
+          <label className="form-group__label">Description: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}/>
+        </div>
+        <div className="form-group">
+          <label className="form-group__label">Dead line: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
+        </div>
+        <button className="form-group__button-save" onClick={ () => this.save() }>Save</button>
+      </span>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-
+    
   }
 }
 

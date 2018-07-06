@@ -7,12 +7,11 @@ import Display from './contentDisplay.component'
 
 import { connect } from 'react-redux'
 
-import { archiveItem } from '../actions/listAction'
+import './content.component.scss'
 
 class Content extends Component {
   constructor(props) {
     super(props);
-
     this.state = {}
   }
 
@@ -20,38 +19,13 @@ class Content extends Component {
     this.state = props.data
   }
 
-  archiveItem(id) {
-    this.props.archiveItem(id);
-  }
-
   render() {
-    if(this.state.status === "empty") {
-      return ( 
-        <Empty></Empty>
-      );
-    }
-
-    if(this.state.status === "add") {
-      return ( 
-        <Add></Add>
-      );
-    }
-
-    if(this.state.status === "edit") {
-      return ( 
-        <Edit></Edit>
-      );
-    }
-    
-    if(this.state.status === "display") {
-      return ( 
-        <Display current={ this.state.current }></Display>
-      );
-    } else {
-      return (
-        <div></div>
-      );
-      
+    switch(this.state.status) {
+      case "empty": return ( <Empty></Empty> );
+      case "add": return ( <Add></Add> );
+      case "display": return ( <Display current={ this.state.current }></Display> );
+      case "edit": return ( <Edit current={ this.state.current }></Edit> );
+      default: return ( <Empty></Empty> );
     }
   }
 }
@@ -64,7 +38,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    archiveItem : (itemId) => dispatch(archiveItem(itemId))
+    
   }
 }
 

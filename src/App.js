@@ -10,12 +10,6 @@ import Content from './components/content.component'
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {}
-  }
-
-  componentWillReceiveProps(props) {
-    this.state = props
   }
 
   render() {
@@ -23,8 +17,8 @@ class App extends Component {
       <main className="app container">
         <div className="row">
           <Sidebar list={ this.props.list }></Sidebar>
-          <section className="content col-md-9">
-            <Content data={ { current: this.props.currentItem, status: this.state.contentStatus} }></Content>
+          <section className="content col-md-8">
+            <Content data={ { current: this.props.currentItem, status: this.props.contentStatus} }></Content>
           </section>
         </div>
       </main>

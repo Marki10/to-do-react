@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import './sidebar.component.scss'
-
 import { deleteItem, setCurrentItem, changeToEdit, archiveItem, changeToAdd } from '../actions/listAction'
+
+import './sidebar.component.scss'
 
 class Header extends Component {
   setCurrentItem(id) {
@@ -14,12 +14,12 @@ class Header extends Component {
     this.props.deleteItem(id);
   }
 
-  changeToEdit() {
-    this.props.changeToEdit();
+  changeToEdit(index) {
+    this.props.changeToEdit(index);
   }
 
-  setItemArchive(id) {
-    this.props.archiveItem(id);
+  setItemArchive(index) {
+    this.props.archiveItem(index);
   }
 
   changeToAdd() {
@@ -28,31 +28,24 @@ class Header extends Component {
 
   render() {
     return (
-      <section className="side-bar col-md-3">
+      <section className="side-bar col-md-4">
         <header className="header">
-          <div className="header__user">Greg</div>
-          <div className="header__search">
-            <input type="text" class="header__search-input" placeholder="Search for..." />
-            <button class="header__search-button" type="button">O</button>
-          </div>
         </header>
         <nav className="nav-menu">
-          <h2 className="nav-menu__title">To do's</h2>
-
           <ul className="nav-menu__list">
             {this.props.list.map((item, index) =>
-              <li key={index} onClick={ () => this.setCurrentItem(item.id) } className="nav-menu__list-item">
-                {item.title}
+              <li key={index} className="nav-menu__list-item">
+                <span onClick={ () => this.setCurrentItem(index) }>{item.title}</span>
                 <div className="nav-menu__button-group">
-                  <button onClick={ () => this.deleteItem(item.id) } className="nav-menu__buttons nav-menu__buttons--danger">X</button>
-                  <button onClick={ () => this.changeToEdit() } className="nav-menu__buttons nav-menu__buttons--success">E</button>
-                  <button onClick={ () => this.setItemArchive(item.id) } className="nav-menu__buttons nav-menu__buttons--info">A</button>
+                  <button onClick={ () => this.deleteItem(item.id) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
+                  <button onClick={ () => this.changeToEdit(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--success"><i className="fa fa-edit"></i></button>
+                  <button onClick={ () => this.setItemArchive(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--info"><i className="fa fa-hashtag"></i></button>
                 </div>
                 <div className="clearfix"></div>
               </li>
             )}
           </ul>
-          <button onClick={ () => this.changeToAdd() }>Add</button>
+          <button className="nav-menu__button nav-menu__button-add" onClick={ () => this.changeToAdd() }>Add</button>
         </nav>
       </section>
 
@@ -62,16 +55,16 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-
+    
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     deleteItem : (itemId) => dispatch(deleteItem(itemId)),
-    archiveItem : (itemId) => dispatch(archiveItem(itemId)),
-    changeToEdit : () => dispatch(changeToEdit()),
-    setCurrentItem : (itemId) => dispatch(setCurrentItem(itemId)),
+    archiveItem : (index) => dispatch(archiveItem(index)),
+    setCurrentItem : (index) => dispatch(setCurrentItem(index)),
+    changeToEdit : (index) => dispatch(changeToEdit(index)),
     changeToAdd : () => dispatch(changeToAdd())
   }
 }

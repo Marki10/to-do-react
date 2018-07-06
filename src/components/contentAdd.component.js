@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { addListItem } from '../actions/listAction'
 
+import './form.component.scss'
+
 class Add extends Component {
   constructor(props) {
     super(props);
@@ -33,11 +35,20 @@ class Add extends Component {
   render() {
     return (
       <span>
-        Add
-        <label>Title: </label> <input type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
-        <label>Description: </label><input type="text" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}/>
-        <label>Deadline: </label><input type="text" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
-        <button onClick={ () => this.save() }>Save</button>
+        <h2 className="content__title">Add new task</h2>
+        <div className="form-group">
+          <label className="form-group__label">Title: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
+        </div>
+        <div className="form-group">
+          <label className="form-group__label">Description: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}/>
+        </div>
+        <div className="form-group">
+          <label className="form-group__label">Dead line: </label>
+          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
+        </div>
+        <button className="form-group__button-save" onClick={ () => this.save() }>Save</button>
       </span>
     );
   }

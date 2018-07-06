@@ -12,10 +12,10 @@ export function editListItem (item) {
     }
 }
 
-export function setCurrentItem(itemId) {
+export function setCurrentItem(index) {
     return {
         type: 'SET_CURRENT_ITEM',
-        payload: itemId
+        payload: index
     }
 }
 
@@ -26,10 +26,10 @@ export function deleteItem(itemId) {
     }
 }
 
-export function archiveItem(itemId) {
+export function archiveItem(index) {
     return {
         type: 'ARCHIVE_ITEM',
-        payload: itemId
+        payload: index
     }
 }
 
@@ -39,8 +39,9 @@ export function changeToAdd() {
     }
 }
 
-export function changeToEdit() {
+export function changeToEdit(itemId) {
     return {
-        type: 'CHANGE_TO_EDIT'
+        type: 'CHANGE_TO_EDIT',
+        payload: itemId
     }
 }
