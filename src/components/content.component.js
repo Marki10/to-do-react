@@ -5,8 +5,6 @@ import Add from './contentAdd.component'
 import Edit from './contentEdit.component'
 import Display from './contentDisplay.component'
 
-import { connect } from 'react-redux'
-
 import './content.component.scss'
 
 class Content extends Component {
@@ -16,7 +14,7 @@ class Content extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.state = props.data
+    this.setState(props.data)
   }
 
   render() {
@@ -30,19 +28,4 @@ class Content extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Content)
+export default Content

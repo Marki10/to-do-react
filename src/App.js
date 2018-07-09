@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Content from './components/content.component'
+import Sidebar from './components/sidebar.component'
+
 import './app.scss'
 
-import Sidebar from './components/sidebar.component'
-import Content from './components/content.component'
-
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <main className="app container">

@@ -40,11 +40,11 @@ class Edit extends Component {
         </div>
         <div className="form-group">
           <label className="form-group__label">Description: </label>
-          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}/>
+          <textarea className="form-group__textarea" onChange={this.handleUpdate.bind(this, 'description')}>{this.state.listItem.description}</textarea>
         </div>
         <div className="form-group">
           <label className="form-group__label">Dead line: </label>
-          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
+          <input className="form-group__input-datepicker" type="date" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
         </div>
         <button className="form-group__button-save" onClick={ () => this.save() }>Save</button>
       </span>

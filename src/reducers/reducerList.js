@@ -1,6 +1,5 @@
-const listReducer = (state = {
+const initialState = {
     contentStatus: 'empty',
-    user: '',
     currentItem: {
         id: 0,
         title: '',
@@ -10,28 +9,25 @@ const listReducer = (state = {
         deadLine: '',
         status: ''
     },
-    list: [
-        {
-            id: 1,
-            title: 'First',
-            description: 'This is the first task!',
-            author: 'Admin',
-            createDate: '2018-01-01',
-            deadLine: '2019-01-01',
-            status: 'active'
-        },
-        {
-            id: 2,
-            title: 'Secound',
-            description: 'This is the first task!',
-            author: 'Me',
-            createDate: '2018-01-01',
-            deadLine: '2019-01-01',
-            status: 'active'
-        }
-    ]
-}, action) => {
+    list: [ ]
+}
+
+const listReducer = (state = initialState, action) => {
     switch(action.type) {
+        case "FETCH_TODOS_START": {
+            console.log("Start featching!");
+            break;
+        }
+        case "RECEIVE_TODOS": {
+            state = {...state,
+                list: action.payload
+            };
+            break;
+        }
+        case "FETCH_TODOS_ERROR": {
+            console.log("Error: " + action.payload);
+            break;
+        }
         case "ADD_LIST_ITEM": {
             state = {...state, 
                 list: [...state.list, action.payload],
@@ -57,15 +53,10 @@ const listReducer = (state = {
             };
             break;
         }
-        case "FETCH_LIST_FULFILLED": {
-            state = {...state, title: action.payload};
-            break;
-        }
         case "DELETE_ITEM": {
-            let position = state.list.findIndex(x => x.id === action.payload);
             state = {...state, list: [
-                ...state.list.slice(0, position),
-                ...state.list.slice(position + 1)],
+                ...state.list.slice(0, action.payload),
+                ...state.list.slice(action.payload + 1)],
                 contentStatus: 'empty'
             };
             break;

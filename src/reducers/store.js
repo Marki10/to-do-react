@@ -1,20 +1,19 @@
-/*store.subscribe(() => {
-    console.log("State changed: ", store.getState());
-});
-
-store.dispatch({type: "CHANGE_NAME", payload: "Foo"});
-store.dispatch({type: "CHANGE_AGE", payload: 2});*/
-
 import { applyMiddleware, createStore } from 'redux'
-
-import { createLogger } from 'redux-logger'
 import thunk from "redux-thunk"
-import promise from "redux-promise-middleware"
-
 import appReducers from './reducers'
+import axios from 'axios'
 
-const middleware = applyMiddleware(promise(), thunk, createLogger())
+const middleware = applyMiddleware(thunk)
+const store = createStore(appReducers, middleware)
 
-const store = createStore(appReducers)
+store.dispatch((dispatch) => {
+    axios.get("http://www.json-generator.com/api/json/get/cfoVREHRmG?indent=2")
+        .then((response) => {
+            dispatch({type: "RECEIVE_TODOS", payload: response.data})
+        })
+        .catch((err) => {
+            dispatch({type: "FETCH_TODOS_ERROR", payload: err})
+        })
+})
 
 export default store;

@@ -6,12 +6,12 @@ import { deleteItem, setCurrentItem, changeToEdit, archiveItem, changeToAdd } fr
 import './sidebar.component.scss'
 
 class Header extends Component {
-  setCurrentItem(id) {
-    this.props.setCurrentItem(id)
+  setCurrentItem(index) {
+    this.props.setCurrentItem(index)
   }
 
-  deleteItem(id) {
-    this.props.deleteItem(id);
+  deleteItem(index) {
+    this.props.deleteItem(index);
   }
 
   changeToEdit(index) {
@@ -37,7 +37,7 @@ class Header extends Component {
               <li key={index} className="nav-menu__list-item">
                 <span onClick={ () => this.setCurrentItem(index) }>{item.title}</span>
                 <div className="nav-menu__button-group">
-                  <button onClick={ () => this.deleteItem(item.id) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
+                  <button onClick={ () => this.deleteItem(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
                   <button onClick={ () => this.changeToEdit(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--success"><i className="fa fa-edit"></i></button>
                   <button onClick={ () => this.setItemArchive(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--info"><i className="fa fa-hashtag"></i></button>
                 </div>
@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteItem : (itemId) => dispatch(deleteItem(itemId)),
+    deleteItem : (index) => dispatch(deleteItem(index)),
     archiveItem : (index) => dispatch(archiveItem(index)),
     setCurrentItem : (index) => dispatch(setCurrentItem(index)),
     changeToEdit : (index) => dispatch(changeToEdit(index)),
