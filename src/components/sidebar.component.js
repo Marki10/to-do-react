@@ -35,11 +35,11 @@ class Header extends Component {
           <ul className="nav-menu__list">
             {this.props.list.map((item, index) =>
               <li key={index} className="nav-menu__list-item">
-                <span onClick={ () => this.setCurrentItem(index) }>{item.title}</span>
+                <span tabIndex="0" onKeyPress={ () => this.setCurrentItem(index) } onClick={ () => this.setCurrentItem(index) }>{item.title}</span>
                 <div className="nav-menu__button-group">
-                  <button onClick={ () => this.deleteItem(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
-                  <button onClick={ () => this.changeToEdit(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--success"><i className="fa fa-edit"></i></button>
-                  <button onClick={ () => this.setItemArchive(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--info"><i className="fa fa-hashtag"></i></button>
+                  <button onClick={ () => this.deleteItem(index) } onKeyPress={ () => this.deleteItem(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
+                  <button onClick={ () => this.changeToEdit(index) } onKeyPress={ () => this.changeToEdit(index) }  className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--success"><i className="fa fa-edit"></i></button>
+                  <button onClick={ () => this.setItemArchive(index) } onKeyPress={ () => this.setItemArchive(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--info"><i className="fa fa-hashtag"></i></button>
                 </div>
                 <div className="clearfix"></div>
               </li>

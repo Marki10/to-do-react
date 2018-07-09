@@ -28,7 +28,7 @@ class Add extends Component {
     this.setState({ listItem: listItem });
   }
 
-  save() {
+  saveItem() {
     this.props.addListItem(this.state.listItem)
   }
 
@@ -42,13 +42,13 @@ class Add extends Component {
         </div>
         <div className="form-group">
           <label className="form-group__label">Description: </label>
-          <textarea className="form-group__textarea" onChange={this.handleUpdate.bind(this, 'description')}>{this.state.listItem.description}</textarea>
+          <textarea className="form-group__textarea" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}></textarea>
         </div>
         <div className="form-group">
           <label className="form-group__label">Dead line: </label>
           <input className="form-group__input" type="date" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
         </div>
-        <button className="form-group__button-save" onClick={ () => this.save() }>Save</button>
+        <button className="form-group__button-save" onClick={ () => this.saveItem() }>Save</button>
       </span>
     );
   }

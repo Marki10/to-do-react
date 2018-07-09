@@ -5,4 +5,28 @@
     &__title {
         margin: 1rem;
     }
+
+    &__dead-line {
+        font-size: .9rem;
+        float: right;
+        font-style: italic;
+    }
+
+    &__description {
+        margin: 1rem;
+    }
+
+    &__status {
+        float: right;
+        padding: .1rem .3rem;
+        border-radius: 3px;
+    }
+
+    .active {
+        background: green;
+    }
+
+    .archive {
+        background: gray;
+    }
 }

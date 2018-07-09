@@ -35,16 +35,16 @@ class Edit extends Component {
       <span>
         <h2 className="content__title">Edit task</h2>
         <div className="form-group">
-          <label className="form-group__label">Title: </label>
-          <input className="form-group__input" type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
+          <label className="form-group__label" htmlFor="title">Title: </label>
+          <input className="form-group__input" id="title" type="text" onChange={this.handleUpdate.bind(this, 'title')} value={this.state.listItem.title}/>
         </div>
         <div className="form-group">
-          <label className="form-group__label">Description: </label>
-          <textarea className="form-group__textarea" onChange={this.handleUpdate.bind(this, 'description')}>{this.state.listItem.description}</textarea>
+          <label className="form-group__label" htmlFor="description">Description: </label>
+          <textarea className="form-group__textarea" id="description" onChange={this.handleUpdate.bind(this, 'description')} value={this.state.listItem.description}></textarea>
         </div>
         <div className="form-group">
-          <label className="form-group__label">Dead line: </label>
-          <input className="form-group__input-datepicker" type="date" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
+          <label className="form-group__label" htmlFor="deadline">Dead line: </label>
+          <input className="form-group__input-datepicker" id="deadline" type="date" onChange={this.handleUpdate.bind(this, 'deadLine')} value={this.state.listItem.deadLine}/>
         </div>
         <button className="form-group__button-save" onClick={ () => this.save() }>Save</button>
       </span>
