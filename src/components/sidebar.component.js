@@ -34,7 +34,7 @@ class Header extends Component {
         <nav className="nav-menu">
           <ul className="nav-menu__list">
             {this.props.list.map((item, index) =>
-              <li key={index} className="nav-menu__list-item">
+              <li key={index} className={[item.status, "nav-menu__list-item"].join(' ')}>
                 <span tabIndex="0" onKeyPress={ () => this.setCurrentItem(index) } onClick={ () => this.setCurrentItem(index) }>{item.title}</span>
                 <div className="nav-menu__button-group">
                   <button onClick={ () => this.deleteItem(index) } onKeyPress={ () => this.deleteItem(index) } className="nav-menu__buttons nav-menu__button-action nav-menu__button-action--danger"><i className="fa fa-minus-square"></i></button>
